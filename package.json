@@ -1,0 +1,8 @@
+{
+  "name": "spiralquery",
+  "version": "1.0.4",
+  "description": "Simple clone of JQuery, modernified.",
+  "main": "spiralquery.js",
+  "author": "Forkerion",
+  "license": "MIT"
+}

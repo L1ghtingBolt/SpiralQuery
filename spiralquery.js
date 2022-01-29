@@ -82,17 +82,36 @@ class ElementCollection extends Array {
     }
     html(content) {
         if(content == undefined) {
-            $(tab.attr('data-tab'))
+            if(this.length == 1) {
+                return this[0].innerText;
+            }
+            else {
+                let r = [];
+                this.forEach(e=> {
+                    r.push(e.innerText);
+                })
+
+                return r;
+            }
         }
         this.forEach(e => {
             e.innerHTML = content;
         })
         return this
     }
-
     text(content) {
         if(content == undefined) {
-            $(tab.attr('data-tab'))
+            if(this.length == 1) {
+                return this[0].innerText;
+            }
+            else {
+                let r = [];
+                this.forEach(e=> {
+                    r.push(e.innerText);
+                })
+
+                return r;
+            }
         }
         this.forEach(e => {
             e.innerText = content;

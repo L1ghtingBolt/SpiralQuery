@@ -81,15 +81,23 @@ class ElementCollection extends Array {
         return this.map(e => e.prevElementSibling).filter(e => e != null)
     }
     html(content) {
+        if(content == undefined) {
+            $(tab.attr('data-tab'))
+        }
         this.forEach(e => {
             e.innerHTML = content;
         })
+        return this
     }
 
     text(content) {
+        if(content == undefined) {
+            $(tab.attr('data-tab'))
+        }
         this.forEach(e => {
             e.innerText = content;
         })
+        return this
     }
     attr(a) {
         return this[0].getAttribute(a);

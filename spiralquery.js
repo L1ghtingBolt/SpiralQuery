@@ -93,7 +93,7 @@ class ElementCollection extends Array {
     }
 
     removeClass(className) {
-        this.forEach(e => e.classlList.remove(className));
+        this.forEach(e => e.classList.remove(className));
         return this;
     }
 

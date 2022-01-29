@@ -91,7 +91,9 @@ class ElementCollection extends Array {
             e.innerText = content;
         })
     }
-
+    attr(a) {
+        return this[0].getAttribute(a);
+    }
     removeClass(className) {
         this.forEach(e => e.classList.remove(className));
         return this;

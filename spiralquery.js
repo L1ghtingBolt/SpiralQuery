@@ -25,14 +25,51 @@ class ElementCollection extends Array {
         }
         return this
     }
-    off(event) {
-        removeEventListener(event);
+    off(event, selectorOrEvent, eventf) {
+        if(typeof selectorOrEvent == 'function'){
+            this.forEach(e => {
+                e.removeEventListener(event, selectorOrEvent)
+            })
+        }
+        else {
+            this.forEach(e => {
+                e.removeEventListener(event, document.querySelector(selectorOrEvent), eventf);
+            })
+        }
+        return this;
     }
     next() {
         return this.map(e => e.nextElementSibling).filter(e => e != null)
     }
     child(c) {
-        return this[c];
+        let r;
+        this.forEach(e => {
+            r = e.children[c] ?? e.firstElementChild;
+        })
+        return r;
+    }
+    nodeChild(c) {
+        let r;
+        this.forEach(e => {
+            r = e.childNodes[c] ?? e.firstChild;
+        })
+        return r;
+    }
+    hasClass(c) {
+        let r;
+        if(this.length == 1){
+            r = this[0].classList.contains(c)
+        }
+        else {
+            r = [];
+            this.forEach(e => {
+                r.push(e.classList.contains(c));
+            })
+        }
+        return r;
+    }
+    children() {
+        return new ElementCollection(...this.map(e=>e.children));
     }
     first() {
         return this[0];
@@ -64,19 +101,40 @@ class ElementCollection extends Array {
         this.forEach(e => e.classList.add(className));
         return this;
     }
-
+    toggleClass(className) {
+        this.forEach(e => e.classList.toggle(className));
+        return this;
+    }
     css(sel, val) {
-        const camelProp = sel.replace(/(-[a-z])/, g => {
-            return g.replace('-', '').toUpperCase();
-        })
+        let camelProp;
+        if(sel != undefined) {
+            camelProp = sel.replace(/(-[a-z])/, g => {
+                return g.replace('-', '').toUpperCase();
+            })
+        }
         if(val != undefined) {
             this.forEach(e => e.style[camelProp] = val);
             return this;
         }
-        if(sel == undefined) {
-            this[0].style;
+        if(this.length == 1) {
+            if(sel == undefined) {
+                return this[0].style;
+            }
+            return this[0].style[camelProp];
         }
-        return this[0].style[camelProp];
+        else {
+            let r = []
+            if(sel == undefined) {
+                this.forEach(e => {
+                    r.push(e.style);
+                })
+                return r;
+            }
+            this.forEach(e => {
+                r.push(e.style[camelProp]);
+            })
+            return r;
+        } 
     }
 
     value(value) {

@@ -25,15 +25,24 @@ class ElementCollection extends Array {
         }
         return this
     }
-
+    off(event) {
+        removeEventListener(event);
+    }
     next() {
         return this.map(e => e.nextElementSibling).filter(e => e != null)
     }
-
+    child(c) {
+        return this[c];
+    }
+    first() {
+        return this[0];
+    }
+    last() {
+        return this[this.length - 1];
+    }
     prev() {
         return this.map(e => e.prevElementSibling).filter(e => e != null)
     }
-
     html(content) {
         this.forEach(e => {
             e.innerHTML = content;

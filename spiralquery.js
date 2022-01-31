@@ -116,10 +116,18 @@ class ElementCollection extends Array {
         this.forEach(e => {
             e.innerText = content;
         })
-        return this
+        return this;
     }
-    attr(a) {
-        return this[0].getAttribute(a);
+    attr(a, set) {
+        if(set == undefined){
+            return this[0].getAttribute(a);
+        }
+        else {
+            this.forEach(e => {
+                e.setAttribute(a, set);
+            })
+            return this;
+        }
     }
     removeClass(className) {
         this.forEach(e => e.classList.remove(className));
@@ -170,6 +178,10 @@ class ElementCollection extends Array {
         this.forEach(e => e.value = value)
         return this
     }
+}
+
+export function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export function $(parameter) {

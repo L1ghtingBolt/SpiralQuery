@@ -178,6 +178,32 @@ class ElementCollection extends Array {
         this.forEach(e => e.value = value)
         return this
     }
+
+    append(e) {
+        let ele = [];
+        e.forEach(el => {
+            ele.push(el)
+        })
+        this.forEach(el => {
+            ele.forEach(elem => {
+                el.appendChild(elem)
+            })
+        })
+        return this;
+    }
+
+    add(...e) {
+        let elcol = [];
+        e.forEach(el => {
+            this.forEach(ele => {
+                let cEl = document.createElement(el);
+                elcol.push(cEl)
+            })
+        })
+        return new ElementCollection(...elcol);
+    }
+
+    
 }
 
 export function timeout(ms) {

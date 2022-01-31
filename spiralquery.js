@@ -50,14 +50,14 @@ export class ElementCollection extends Array {
         this.forEach(e => {
             r = e.children[c] ?? e.firstElementChild;
         })
-        return r;
+        return new ElementCollection(...r);
     }
     nodeChild(c) {
         let r;
         this.forEach(e => {
             r = e.childNodes[c] ?? e.firstChild;
         })
-        return r;
+        return new ElementCollection(...r);
     }
     hasClass(c) {
         let r;

@@ -1,5 +1,7 @@
 # SpiralQuery
-A simple utility-first SCSS framework. (Includes precompiled files.)
+*Write less, do the same.*
+A lightweight, modern and "useful" utility framework, made as a 'replacement' for JQuery.
+As always, everything you can do with SpiralQuery is possible to do with ECMAScript 6+, but with SpiralQuery you write less, and do the same.
 
 ## Instalation: 
 Simply install the NPM package using:
@@ -25,7 +27,7 @@ npm pack
 #or
 pnpm pack`.
 
-To publish it as a package, change the project name under package.json, and do: 
+To publish it as a package, change the project name under package.json (otherwise you won't be able to publish it), and do: 
 `yarn publish
 #or
 npm publish

@@ -39,7 +39,7 @@ class ElementCollection extends Array {
         return this;
     }
     next() {
-        return this.map(e => e.nextElementSibling).filter(e => e != null)
+        return new ElementChild(this.map(e => e.nextElementSibling).filter(e => e != null))
     }
     child(c) {
         let r;
@@ -69,7 +69,7 @@ class ElementCollection extends Array {
         return r;
     }
     children() {
-        return new ElementCollection(...this.map(e=>e.children));
+        return new ElementCollection(...this.map(e => e.children));
     }
     first() {
         return this[0];
@@ -78,7 +78,7 @@ class ElementCollection extends Array {
         return this[this.length - 1];
     }
     prev() {
-        return this.map(e => e.prevElementSibling).filter(e => e != null)
+        return new ElementChild(this.map(e => e.prevElementSibling).filter(e => e != null))
     }
     html(content) {
         if(content == undefined) {
@@ -174,9 +174,21 @@ class ElementCollection extends Array {
         } 
     }
 
-    value(value) {
-        this.forEach(e => e.value = value)
-        return this
+    value(set) {
+        if(set !== undefined){
+            this.forEach(e => e.value = set)
+            return this
+        }
+        else if(this.length === 1) {
+            return this[0].value;
+        }
+        else {
+            let r = [];
+            this.forEach(e => {
+                r.push(e.value);
+                return r;
+            })
+        }
     }
 
     append(e) {

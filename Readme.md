@@ -1,4 +1,4 @@
-### SpiralQuery
+# SpiralQuery
 A simple utility-first SCSS framework. (Includes precompiled files.)
 
 ## Instalation: 

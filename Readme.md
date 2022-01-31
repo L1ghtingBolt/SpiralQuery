@@ -9,6 +9,10 @@ npm install spiralquery
 #or
 pnpm install spiralquery
 `.
+Then, import it on your JS file using:
+```js
+import 'spiralquery' // You do not have to import $() or timeout() functions, they put themselves on the window object.
+```
 Or, use the CDN version, with `<link rel="stylesheet" href="https://cdn.skypack.dev/spiralquery">`.
 
 https://cdn.jsdelivr.net/gh/L1ghtingBolt/SpiralCSS@latest/dist/style.css

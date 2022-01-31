@@ -1,4 +1,4 @@
-class ElementCollection extends Array {
+export class ElementCollection extends Array {
     ready(cb) {
         const isReady = this.some(e => {
             return e; 
@@ -24,6 +24,10 @@ class ElementCollection extends Array {
             })
         }
         return this
+    }
+    find(sel) {
+        var nodes = new ElementCollection(...this.map(e => e.querySelectorAll(sel)[0])).flat(49349234234234);
+        return nodes; 
     }
     off(event, selectorOrEvent, eventf) {
         if(typeof selectorOrEvent == 'function'){
@@ -218,11 +222,11 @@ class ElementCollection extends Array {
     
 }
 
-export function timeout(ms) {
+window.timeout = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export function $(parameter) {
+window.$ = (parameter) => {
     if (typeof parameter === 'string' || parameter instanceof String) {
         return new ElementCollection(...document.querySelectorAll(parameter));
     }

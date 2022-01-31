@@ -218,12 +218,28 @@ export class ElementCollection extends Array {
         })
         return new ElementCollection(...elcol);
     }
-
     
+}
+
+window.randInt = (min, max) => {
+    return (Math.floor(Math.random() * max)- min)
+}
+
+window.onoffToBool = (onoff) => {
+    return onoff === 'on' ? true : false;
+}
+
+window.stringToBool = (stringifiedBool) => {
+    return stringifiedBool === 'true' ? true : false;
 }
 
 window.timeout = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+window.sleep = async (callback, ms, ...callbackArgs) => {
+    await timeout(ms);
+    callback(...callbackArgs);
 }
 
 window.$ = (parameter) => {
